@@ -1,6 +1,6 @@
 from distutils.core import setup
 
-VERSION = '0.4.4'
+VERSION = '0.4.5'
 
 setup(
     name='django-registration-defaults',
@@ -13,7 +13,7 @@ setup(
         " on ``django-registration``.",
     author="Charlie DeTar",
     author_email="cfd@media.mit.edu",
-    url="http://github.com/yourcelf/django-registration-defaults",
+    url="http://github.com/dfrankow/django-registration-defaults",
     license="MIT License",
     platforms=["any"],
     classifiers=[
@@ -26,8 +26,8 @@ setup(
         "Framework :: Django",
     ],
     install_requires=[
-        'Django>=1.5',
-        'django-registration>=1.0',
+        'Django>=2.1',
+        'django-registration>=3.0',
     ],
     packages=['registration_defaults'],
     package_dir={'registration_defaults': 'registration_defaults'},

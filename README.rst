@@ -1,7 +1,7 @@
 django-registration-defaults
 ============================
 
-James Bennet's `django-registration <http://bitbucket.org/ubernostrum/django-registration/>`_ 
+James Bennet's `django-registration <http://bitbucket.org/ubernostrum/django-registration/>`_
 is awesome.  But it doesn't come with any of the 15 templates required to
 implement the workflow of registration, login/logout, and password changing and
 resetting.  This application simply provides a set of default templates for
@@ -53,7 +53,7 @@ You can add the templates in one of two ways:
                 "registration_defaults",
                 "django.contrib.admin",
                 ...
-                "registration",
+                "django_registration",
             )
 
     2. Alternatively, if ``django.template.loaders.filesystem.Loader`` is
@@ -73,16 +73,16 @@ Base templates
 ~~~~~~~~~~~~~~
 
 All ``registration_defaults`` templates inherit from
-``registration/registration_base.html``.  The default template provided for
+``django_registration/registration_base.html``.  The default template provided for
 this is simply::
 
     {% extends "base.html" %}
 
 You must either provide a ``base.html`` for the registration templates to
-inherit from, or override ``registration/registration_base.html``.  The base
+inherit from, or override ``django_registration/registration_base.html``.  The base
 template should provide a ``title`` block for the content of the HTML title,
 and a ``content`` block for content (NOTE: this has changed from previously
-using ``body`` to be more in line with `reusable app standards 
+using ``body`` to be more in line with `reusable app standards
 <http://django-reusable-app-docs.readthedocs.org/en/latest/index.html>`_ ).  For example::
 
     <!doctype html>
