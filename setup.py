@@ -1,6 +1,6 @@
 from distutils.core import setup
 
-VERSION = '0.4.5'
+VERSION = '0.4.6'
 
 setup(
     name='django-registration-defaults',

@@ -6,8 +6,18 @@
 {% url 'django_registration_register' as register_url%}
 
 {% if form.errors %}
-{# TODO: get the real form error #}
-<p>{% blocktrans %}Your username and password didn't match. Please try again.{% endblocktrans %}</p>
+    {% for field in form %}
+        {% for error in field.errors %}
+           <li>{% blocktrans %}{{ error }}{% endblocktrans %}</li>
+        {% endfor %}
+    {% endfor %}
+  {% if form.non_field_errors %}
+  <ul class="errorlist nonfield">
+      {% for error in form.non_field_errors %}
+        <li>{% blocktrans %}{{ error }}{% endblocktrans %}</li>
+      {% endfor %}
+  </ul>
+  {% endif %}
 {% endif %}
 
 <form method="post" action="{% url 'login' %}">{% csrf_token %}
@@ -21,11 +31,16 @@
     <td>{{ form.password }}</td>
 </tr>
 </table>
-<p>{% blocktrans %}<a href="{{ auth_pwd_reset_url }}">Forgot</a> your password?
-    <a href="{{ register_url }}">Need an account</a>?{% endblocktrans %}</p>
 
 <input type="submit" value="{% trans "login" %}" />
 <input type="hidden" name="next" value="{{ next }}" />
 </form>
+
+<p>{% blocktrans %}<a href="{{ auth_pwd_reset_url }}">Forgot your password?</a>{% endblocktrans %}</p>
+{# NOTE: settings is not put into the template by default, you have to override the login view with extra_context #}
+{# See https://docs.djangoproject.com/en/2.2/topics/auth/default/#django.contrib.auth.views.LoginView #}
+{% if settings.REGISTRATION_OPEN %}
+    <p>{% blocktrans %}<a href="{{ register_url }}">Need an account</a>?{% endblocktrans %}</p>
+{% endif %}
 
 {% endblock %}
